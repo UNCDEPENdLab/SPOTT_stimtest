@@ -7,7 +7,7 @@ if strcmp(Modeflag,'InitializeBlock');
     %Fixation Cross & Instructions
     instructions = 1;
     stimstruct = CreateStimStruct('text');
-    stimstruct.stimuli = {'On each trial, you will be presented with two items,','both of which will be an item from the experiment','you just completed: either a deck or a carny.','Your job is to determine which item between the two','is more likely to win you points.','You will answer using the LEFT & RIGHT ARROW KEYS.','Press Spacebar when you''re ready to proceed.'};
+    stimstruct.stimuli = {'On each trial, you will be presented with two items,','both of which will be an item from the experiment','you just completed: either a deck or a carny.','Your job is to determine which item between','the two is more likely to win you points.','You will answer using the LEFT & RIGHT ARROW KEYS.','Press Spacebar when you''re ready to proceed.'};
     stimstruct.wrapat = 70;
     stimstruct.vSpacing = 3;
     stimstruct.stimsize = 25;
@@ -125,8 +125,8 @@ elseif strcmp(Modeflag,'InitializeTrial');
     right_x = centerx + x_spacing;
     
     %Timing Variables
-    instruction_time = 0;
-    feedback_time = 0;
+    instruction_time = 0.1;
+    feedback_time = 0.1;
     if Trial == 1
         response_time = instruction_time + 0.01;
     elseif Trial >=2 && Trial <= 5
@@ -200,6 +200,8 @@ elseif strcmp(Modeflag,'EndTrial');
     response_text = char(Events.response{response_event});
     Trial_Export.response = response_text;
 elseif strcmp(Modeflag,'EndBlock');
+    %Present a farewell message
+    briefmessage(Parameters,'This concludes the science.','Thank you for participating!','Arial',44,0,0,1.5);
 else   %Something went wrong in Runblock (You should never see this error)
     error('Invalid modeflag');
 end
