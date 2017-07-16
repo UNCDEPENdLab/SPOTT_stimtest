@@ -1,0 +1,2 @@
+The error occured in function Showstream on line 288and the error message is: 
+ User aborted
